@@ -28,7 +28,7 @@ function model:think(st)
   return m_posnum
 end
 
-local function clrscr() io.write("\27[2J\27[H") end
+local function clrscr() if os.execute("clear") ~= 0 then os.execute("cls") end end
 
 local function checkwinner(st)
   local wins = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7} }
@@ -37,7 +37,7 @@ local function checkwinner(st)
   return "Tie"
 end
 
-local function visualise(st) io.write("-------------\n| "..st[1].." | "..st[2].." | "..st[3].." |\n-------------\n| "..st[4].." | "..st[5].." | "..st[6].." |\n-------------\n| "..st[7].." | "..st[8].." | "..st[9].." |\n-------------\n"); io.flush()end
+local function visualise(st) io.write("-------------\n| "..st[1].." | "..st[2].." | "..st[3].." |\n-------------\n| "..st[4].." | "..st[5].." | "..st[6].." |\n-------------\n| "..st[7].." | "..st[8].." | "..st[9].." |\n-------------\n") end
 
 local t3_ai,train_comp = model.new(false,15,12,10,5,2,-5), model.new(true,15,12,10,5,2,-5)
 local t3_win,tc_win,ties_win = 0,0,0
